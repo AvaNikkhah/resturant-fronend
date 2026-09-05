@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>restaurant</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png"> 
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+
+    <meta name="description" content="Hledáte skvělé jídlo nebo ubytování v okolí Mladé Boleslavi? Restaurace Pod Břízami v Bezně nabízí poctivou českou kuchyni, příjemné posezení a možnost ubytování. Přijďte k nám!">
+    <meta name="keywords" content="Restaurace Bezno, Restaurace Pod Břízami, Bezno Restaurace, ubytování Bezno, Restaurace Mladá Boleslav, Bezno, Hotel, Mladá Boleslav, ubytování Mladá Boleslav, česká kuchyně, polední menu, jídlo, občerstvení, Facebook, facebook restaurace">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://podbrizami.cz/">
+    <meta property="og:title" content="Restaurace Pod Břízami">
+    <meta property="og:description" content="Tradiční česká kuchyně, polední menu a příjemné posezení.">
+    <meta property="og:image" content="https://podbrizami.cz/images/restaurace.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Restaurace Pod Břízami">
+    <meta name="twitter:description" content="Tradiční česká kuchyně, polední menu a příjemné posezení.">
+    <meta name="twitter:image" content="https://podbrizami.cz/images/restaurace.jpg">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css?v=2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+	<script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/28ffc0fb5744221e702a86fbed4612cf/script.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V1747T7JS3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-V1747T7JS3');
+    </script>
+</head>
+<body>
+
+    <header class="navbar">
+        <span class="logo-container">
+            <a href="#" class="logo"><span class="material-symbols-outlined notranslate" translate="no">رستوران‌یاس</span></a>
+        </span>
+        
+        <button id="burger-btn">&#9776;</button>
+        <ul id="nav-links">
+            <li><a href="#menu">منو</a></li>
+            <li><a href="#galerie">گالری</a></li>
+            <li><a href="#rezervace">رزرو</a></li>
+            <li><a href="#kontakt">تماس با ما</a></li>
+
+            <li class="gtranslate_wrapper" style="margin-top: -2px;"></li>
+        </ul>
+    </header>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>رستوران خانوادگی در حومه تهران</h1>
+            <p>خوش آمدید</p>
+            <a href="#rezervace" class="btn">تاریخچه</a>
+        </div>
+    </header>
+
+    <!-- Stats strip -->
+    <div class="atmosphere-strip">
+        <div class="atm-item reveal">
+            <div class="atm-number">26</div>
+            <div class="atm-label">قدمت ساخت</div>
+            <div class="atm-desc">رستوران خانوادگی از سال ۲۰۰۰</div>
+        </div>
+        <div class="atm-item reveal reveal-delay-1">
+            <div class="atm-number">80</div>
+            <div class="atm-label">فضای نشیمن</div>
+            <div class="atm-desc">رستوران + تراس</div>
+        </div>
+        <div class="atm-item reveal reveal-delay-2">
+            <div class="atm-number">10</div>
+            <div class="atm-label">اتاق‌ها</div>
+            <div class="atm-desc">اقامت مستقیم در رستوران</div>
+        </div>
+    </div>
+<section class="daily-menu-section" id="menu">
+  <div class="menu-card">
+    <div class="menu-header">
+      <p id="menu-date" class="menu-date">بارگیری…</p>
+      <span class="gold-rule"></span>
+    </div>
+
+    <div id="menu-error" class="error-msg" hidden>منو قابل بارگذاری نبود.</div>
+
+    <!-- Dnešní menu (vše za jednu cenu) -->
+    <div id="menu-dnesni" class="menu-block" hidden>
+      <div class="menu-block-head">
+        <h2 class="menu-block-title">منوی امروز</h2>
+        <span id="menu-dnesni-cena" class="menu-block-price"></span>
+      </div>
+      <ul id="menu-dnesni-list" class="menu-dnesni-list"></ul>
+    </div>
+
+    <!-- Nabídka dne (jednotlivé ceny) -->
+    <div id="menu-nabidka" class="menu-block" hidden>
+      <h2 class="menu-block-title">پیشنهاد روز</h2>
+      
+    </div>
+
+    <!-- Pevná část (needituje se v tabulce) -->
+    <div class="menu-footer">
+      <p class="menu-vydej">تحویل غذای آماده از ساعت ۱۰:۳۰ صبح تا ۲:۳۰ بعد از ظهر (دوشنبه تا شنبه)</p>
+
+      <ul class="menu-priplatky">
+        <li><span>به انبار غذا برمی‌گردیم</span><span>+5,--</span></li>
+        <li><span>۱ عدد پیراشکی اضافه</span><span>+6,--</span></li>
+        <li><span>یک پیمانه برنج اضافه</span><span>+15,--</span></li>
+        <li><span>تغییر پیوست</span><span>+15,--</span></li>
+        <li><span>پچیوو (روهلیک، کراجیک چلبا)</span><span>+6,--</span></li>
+        <li><span>جعبه من (سوپ، غذا، سالاد ..)</span><span>+6,--</span></li>
+        <li><span>(قاشق، چنگال + چاقو)</span><span>+5,--</span></li>
+      </ul>
+
+      <details class="menu-alergeny">
+        <summary>فهرست<small></small></summary>
+        <ol>
+          <li>کوبیده</li>
+          <li>جوجه کباب مخصوص</li>
+          <li>پیتزا ساده</li>
+          <li>پیتزا آلمانی</li>
+          <li>پیتزا ایتالیایی</li>
+          <li>چلو خورشت قیمه</li>
+          <li>چلو خورشت سبزی</li>
+          <li>لوبیا پلو+ماست</li>
+ 
+        </ol>
+      </details>
+    </div>
+  </div>
+</section>
+  
+    <section id="galerie" class="gallery-section">
+        <div class="container gallery-header">
+            <h2 class="reveal">گالری</h2>
+            <span class="gold-rule reveal"></span>
+        </div>
+        <div class="gallery-slider">
+            <button class="slider-btn prev-btn" aria-label="Předchozí">&#10094;</button>
+            <div class="slider-view">
+                <div class="slider-track">
+                    <div class="gallery-img gallery-item-1"></div>
+                    <div class="gallery-img gallery-item-2"></div>
+                    <div class="gallery-img gallery-item-3"></div>
+                    <div class="gallery-img gallery-item-4"></div>
+                    <div class="gallery-img gallery-item-5"></div>
+                    <div class="gallery-img gallery-item-6"></div>
+                    <div class="gallery-img gallery-item-7"></div>
+                    <div class="gallery-img gallery-item-8"></div>
+                    <div class="gallery-img gallery-item-9"></div>
+                    <div class="gallery-img gallery-item-10"></div>
+                </div>
+            </div>
+            <button class="slider-btn next-btn" aria-label="Další">&#10095;</button>
+        </div>
+    </section>
+
+    <section id="rezervace" class="container">
+        <h2 class="reveal">رزرو</h2>
+        <span class="gold-rule reveal"></span>
+
+        <!-- Přepínač -->
+        <div class="rez-tabs reveal" role="tablist">
+            <button class="rez-tab active" id="tab-stul" role="tab" aria-selected="true" aria-controls="panel-stul">
+                <span class="material-symbols-outlined notranslate" translate="no">رستوران</span>
+                رستوران یاس
+            </button>
+            <button class="rez-tab" id="tab-hotel" role="tab" aria-selected="false" aria-controls="panel-hotel">
+                <span class="material-symbols-outlined notranslate" translate="no">تخت</span>
+               رزرو اتاق
+            </button>
+        </div>
+
+        <!-- Panel: Stůl -->
+        <div class="reservation-wrapper reveal" id="panel-stul" role="tabpanel" aria-labelledby="tab-stul">
+            <div class="reservation-form">
+                <h3>رزرو میز</h3>
+                <p>
+شما می‌توانید ۲۴ ساعت قبل رزرو کنید</p>
+                <form action="https://formspree.io/f/xvznooel" method="POST" id="form-stul">
+                    <div class="input-group">
+                        <label for="stul-name">نام و نام خانوادگی</label>
+                        <input type="text" id="stul-name" name="name" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="stul-email">ایمیل</label>
+                        <input type="email" id="stul-email" name="email" required>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="stul-date">تاریخ</label>
+                            <input type="date" id="stul-date" name="date" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="stul-time">زمان رسیدن</label>
+                            <input type="time" id="stul-time" name="time" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="stul-guests">تعداد افراد</label>
+                        <select id="stul-guests" name="guests">
+                            <option value="1">۱ نفر</option>
+                            <option value="2" selected>2 نفر</option>
+                            <option value="3">3 نفر</option>
+                            <option value="4">4 نفر</option>
+                            <option value="5">5 نفر</option>
+                            <option value="6+">6 نفر یا بیشتر</option>
+                        </select>
+                        <small id="guests-hint" style="color: #E86D2B; display: none; margin-top: 8px; font-weight: 500;">
+                            * برای ۶ نفر یا بیشتر، لطفاً تعداد دقیق را در توضیحات زیر ذکر کنید.
+                        </small>
+                    </div>
+                    <div class="input-group">
+                        <label for="stul-note">توجه (آلرژی، تمایلات ...)</label>
+                        <textarea id="stul-note" name="note" rows="3"></textarea>
+                    </div>
+                    <p style="text-align: center; color: #757575; font-size: 0.9em; margin-bottom: 15px;">* ما هر روز صبح ایمیل‌ها را بررسی می‌کنیم و در اسرع وقت رزرو شما را تأیید خواهیم کرد.</p>
+                    <button type="submit" class="btn btn-dark">رزرو میز</button>
+                </form>
+            </div>
+            <div class="reservation-img reservation-img-stul">
+            </div>
+        </div>
+
+        <!-- Panel: Hotel -->
+        <div class="reservation-wrapper hidden" id="panel-hotel" role="tabpanel" aria-labelledby="tab-hotel">
+            <div class="reservation-form">
+                <h3>رزرو اتاق</h3>
+                <p>شما می‌توانید ۲۴ ساعت قبل رزرو کنید.</p>
+                <form action="https://formspree.io/f/xvznooel" method="POST" id="form-hotel">
+                    <div class="input-group">
+                        <label for="hotel-name">نام و نام خانوادگی</label>
+                        <input type="text" id="hotel-name" name="Jméno a příjmení" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="hotel-email">ایمیل</label>
+                        <input type="email" id="hotel-email" name="E-mail" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="hotel-phone">تلفن</label>
+                        <input type="tel" id="hotel-phone" name="Telefon" placeholder="+420 …">
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="hotel-prijezd">ورود</label>
+                            <input type="date" id="hotel-prijezd" name="Příjezd" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="hotel-odjezd">عزیمت</label>
+                            <input type="date" id="hotel-odjezd" name="Odjezd" required>
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label for="hotel-room">نوع اتاق</label>
+                            <select id="hotel-room" name="Typ pokoje">
+                                <option value="1 lůžkový">۱ تخت</option>
+                                <option value="2 lůžkový" selected>2 تخت</option>
+                                <option value="3 lůžkový">3 تخت</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="hotel-guests">تعداد مهمانان</label>
+                            <input type="number" id="hotel-guests" name="Počet osob" readonly value="2">
+                        </div>
+                    </div>
+                 
+                    <div class="input-group">
+                        <label for="hotel-note">توجه (شرایط ویژه…)</label>
+                        <textarea id="hotel-note" name="Poznámka" rows="3"></textarea>
+                    </div>
+                    <p style="text-align: center; color: #757575; font-size: 0.9em; margin-bottom: 15px;">* ما هر روز صبح ایمیل‌هایمان را بررسی می‌کنیم. رزرو شما تأیید خواهد شد.potvrdíme co nejdříve.</p>
+                    <button type="submit" class="btn btn-dark">Rezervovat pokoj</button>
+                </form>
+            </div>
+            <div class="reservation-img reservation-img-hotel">
+            </div>
+        </div>
+    </section>
+
+    <section id="kontakt" class="map-section">
+        <div class="container">
+            <h2 class="reveal">ما را کجا پیدا کنید</h2>
+            <span class="gold-rule reveal"></span>
+            <p class="section-lead reveal">پلاک 45 خیابان کافی منطقه 22 تهران</p>
+        </div>
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d207432.22744111394!2d51.26541621640625!3d35.70778460000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e00491ff3dcd9%3A0xf0b3c9735e7a9e33!2sTehran%2C+Tehran+Province%2C+Iran!5e0!3m2!1sen!2sus!4v1716388902000!5m2!1sen!2sus" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+
+            <div class="footer-col">
+                <h4>ارتباط با ما</h4>
+                <ul>
+                    <li>
+                        <span class="material-symbols-outlined notranslate" translate="no">شماره تماس</span>
+                        <a href="tel:+722723746">+420 722 723 746</a>
+                    </li>
+                    <li>
+                        <span class="material-symbols-outlined notranslate" translate="no">ایمیل</span>
+                        <a href="mailto:hotel.bezno@seznam.cz">hotel.bezno@seznam.cz</a>
+                    </li>
+                    <li>
+                        <span class="material-symbols-outlined notranslate" translate="no">لوکیشن</span>
+                        پلاک 45 خیابان کافی منطقه 22 تهران
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>ساعات کاری</h4>
+                <ul class="hours">
+                    <li><span>دوشنبه – جمعه</span><span>10:30 – 19:00</span></li>
+                    <li><spa>شنبه</spa></span><span>طبق توافق</span></li>
+                    <li><span>یکشنبه</span><span>بسته</span></li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; تمامی حقوق مطعلق به رستوران یاس است</p>
+            <a href="ochrana-udaju.html" class="footer-legal-link">سیاست حفظ حریم خصوصی</a>
+        </div>
+    </footer>
+
+    <script src="script.js?v=2"></script>
+    <script src="https://cdn.gtranslate.net/widgets/latest/dropdown.js" defer></script>
+    <script>
+      setInterval(function() {
+        const select = document.querySelector('.gtranslate_wrapper select');
+        if (select && select.options.length > 0) {
+          if (select.options[0].text.toLowerCase().includes('select')) {
+            select.options[0].remove();
+          }
+        }
+      }, 50);
+    </script>
+</body>
+</html>
